@@ -16,6 +16,8 @@ public class User extends BaseTimeEntity {
     @Column(name = "user_id")
     private Long id;
 
+    private String publicUserId;
+
     private String name;
 
     private String nickName;
@@ -33,8 +35,13 @@ public class User extends BaseTimeEntity {
         this.name = name;
         this.nickName = nickName;
         this.email = email;
+        this.publicUserId = getPublicUserIdFromEmail();
         this.address = address;
         this.role = role;
+    }
+
+    private String getPublicUserIdFromEmail() {
+        return email.split("@")[0];
     }
 
     public User updateNickName(String nickName) {

@@ -17,6 +17,12 @@ public class UserService {
 
     private final UserRepository userRepository;
 
+    /**
+     * 회원 가입
+     * @param requestDto
+     * @return user_id (pk)
+     */
+    // TODO: 2021-06-28 중복되는 닉네임 예외 처리
     public Long join(UserJoinRequestDto requestDto) {
         Optional<User> sameEmailUser = userRepository.findByEmail(requestDto.getEmail());
         if (sameEmailUser.isPresent()) {
